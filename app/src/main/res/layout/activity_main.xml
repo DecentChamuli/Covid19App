@@ -1,0 +1,333 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <!-- App Heading  -->
+    <TextView
+        android:id="@+id/mainHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/desc"
+        android:fontFamily="@font/oswald_bold"
+        android:gravity="center_horizontal"
+        android:text="@string/heading"
+        android:textAlignment="center"
+        android:textColor="@color/heading"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:visibility="visible" />
+
+    <!-- Country Showing Section -->
+    <LinearLayout
+        android:id="@+id/mainContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/casesText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/cases"
+            android:textColor="@color/heading"
+            android:textSize="22sp"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/worldIcon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginRight="2dp"
+            android:contentDescription="@string/worldwide"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_baseline_language_24"
+            tools:ignore="VectorDrawableCompat" />
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0.5dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/worldwide"
+            android:textSize="22sp"
+            android:visibility="visible" />
+
+    </LinearLayout>
+
+    <!-- Fetching Total Details from API -->
+    <LinearLayout
+        android:id="@+id/totalDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/totalcasesSection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingEnd="25sp"
+            android:paddingRight="25sp">
+
+            <TextView
+                android:id="@+id/totalCases"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="2dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/total_cases"
+                android:textColor="@color/lightBlue"
+                android:textSize="23sp" />
+
+            <TextView
+                android:id="@+id/totalcasesFetch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/cases_here"
+                android:textColor="@color/darkBlue"
+                android:textSize="22sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/totaldeathsSection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="25dp"
+            android:paddingLeft="25dp">
+
+            <TextView
+                android:id="@+id/totalDeath"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="2dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/total_deaths"
+                android:textColor="@color/lightRed"
+                android:textSize="23sp" />
+
+            <TextView
+                android:id="@+id/totaldeathsFetch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/deaths_here"
+                android:textColor="@color/darkRed"
+                android:textSize="22sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/totalrecoverySection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="4dp">
+
+        <TextView
+            android:id="@+id/totalRecovery"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginBottom="2dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/total_recoveries"
+            android:textColor="@color/lightGreen"
+            android:textSize="23sp" />
+
+        <TextView
+            android:id="@+id/totalrecoveryFetch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@string/cases_here"
+            android:textColor="@color/darkGreen"
+            android:textSize="22sp" />
+    </LinearLayout>
+
+    <!-- Fetching New Details from API -->
+    <LinearLayout
+        android:id="@+id/todayDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/todaycasesSection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingEnd="25sp"
+            android:paddingRight="25sp">
+
+            <TextView
+                android:id="@+id/todayCases"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="2dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/today_cases"
+                android:textColor="@color/lightBlue"
+                android:textSize="23sp" />
+
+            <TextView
+                android:id="@+id/todaycasesFetch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/cases_here"
+                android:textColor="@color/darkBlue"
+                android:textSize="22sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/todaydeathsSection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="25dp"
+            android:paddingLeft="25dp">
+
+            <TextView
+                android:id="@+id/todayDeaths"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="2dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/today_deaths"
+                android:textColor="@color/lightRed"
+                android:textSize="23sp" />
+
+            <TextView
+                android:id="@+id/todaydeathsFetch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/deaths_here"
+                android:textColor="@color/darkRed"
+                android:textSize="22sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/activeSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="4dp">
+
+        <TextView
+            android:id="@+id/totalActive"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginBottom="2dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/total_active"
+            android:textColor="@color/lightRed"
+            android:textSize="23sp" />
+
+        <TextView
+            android:id="@+id/totalactiveFetch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@string/cases_here"
+            android:textColor="@color/darkRed"
+            android:textSize="22sp" />
+    </LinearLayout>
+
+
+
+    <!-- Graph Section -->
+    <ScrollView
+        android:id="@+id/graphs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/pieChart"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+    <!-- Navbar Section -->
+    <LinearLayout
+        android:id="@+id/navBar"
+        android:layout_width="match_parent"
+        android:layout_height="95dp"
+        android:background="#7e9492"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:weightSum="3">
+<!--        android:layout_marginTop="200dp"-->
+
+        <TextView
+            android:id="@+id/inCountry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:onClick="openActivity"
+            android:text="@string/cases_in_country"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/inWorldwide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/worldwide"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/byVaccines"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/vaccine"
+            android:textSize="20sp"/>
+    </LinearLayout>
+
+</LinearLayout>

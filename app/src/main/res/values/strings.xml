@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Covid Tracker</string>
+    <string name="heading">Covid 19 Tracker</string>
+    <string name="desc">Real Time Covid-19 Tracker</string>
+    <string name="worldwide">WorldWide</string>
+    <string name="cases">Cases: </string>
+    <string name="total_cases">Total Cases:</string>
+    <string name="today_cases">New Cases:</string>
+    <string name="total_deaths">Total Deaths:</string>
+    <string name="total_recoveries">Total Recovered:</string>
+    <string name="today_deaths">New Deaths:</string>
+    <string name="total_active">Active Cases:</string>
+    <string name="cases_here">Cases Here</string>
+    <string name="deaths_here">Deaths Here</string>
+    <string name="temp">This is Navbar</string>
+    <string name="cases_in_country">Cases in Country</string>
+    <string name="vaccine">Vaccine</string>
+    <string name="country_name">Country Name</string>
+</resources>
