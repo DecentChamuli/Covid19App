@@ -1,10 +1,18 @@
 package com.example.covidtracker;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,80 +20,62 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.github.mikephil.charting.data.PieEntry;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CountryList extends AppCompatActivity {
 
-    TextView totalCases;
-    String totalCasesFetch;
-    TextView totalDeaths;
-    String totalDeathsFetch;
-    TextView totalRecoveries;
-    String totalRecoveriesFetch;
-    TextView totalActive;
-    String totalActiveFetch;
-
-    TextView countryName;
-    String countryNameFetch;
-
-    TextView newCases;
-    String newCasesFetch;
-    TextView newDeaths;
-    String newDeathsFetch;
+    RecyclerView recyclerView;
+    List<Country> countries;
+    Adapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_country_list);
 
-        totalCases = findViewById(R.id.totalcasesFetch);
-        totalDeaths = findViewById(R.id.totaldeathsFetch);
-        totalRecoveries = findViewById(R.id.totalrecoveryFetch);
-        totalActive = findViewById(R.id.totalactiveFetch);
+        recyclerView = findViewById(R.id.countryList);
 
-        newCases = findViewById(R.id.todaycasesFetch);
-        newDeaths = findViewById(R.id.todaydeathsFetch);
+        countries = new ArrayList<>();
+        fetchCountry();
+    }
 
-        countryName= findViewById(R.id.location);
-
-        RequestQueue requestQueue;
-        requestQueue = Volley.newRequestQueue(this);
-
-        String country = "pk";
-
-        JsonObjectRequest JsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
-                "https://disease.sh/v3/covid-19/countries/"+country,
-                null, new Response.Listener<JSONObject>() {
+    private void fetchCountry(){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        JsonArrayRequest JsonArrayRequest = new JsonArrayRequest(Request.Method.GET,
+                "https://disease.sh/v3/covid-19/countries",
+                null, new Response.Listener<JSONArray>() {
             @Override
-            public void onResponse(JSONObject response) {
+            public void onResponse(JSONArray response) {
 
-                try {
+                    try {
+                        for (int i = 0; i < 10; i++) {
+//                        for(int i=0; i<response.length(); i++){
 
-                    countryNameFetch = response.getString("country");
-                    countryName.setText(countryNameFetch);
+                            JSONObject obj = response.getJSONObject(i);
+                            String countryFetch = obj.getString("country");
+                            Country country = new Country();
+                            country.setCountryName(countryFetch);
 
-                    totalCasesFetch = String.valueOf(response.getInt("cases"));
-                    totalCases.setText(totalCasesFetch);
-                    totalDeathsFetch = String.valueOf(response.getInt("deaths"));
-                    totalDeaths.setText(totalDeathsFetch);
-                    totalRecoveriesFetch = String.valueOf(response.getInt("recovered"));
-                    totalRecoveries.setText(totalRecoveriesFetch);
-                    totalActiveFetch = String.valueOf(response.getInt("active"));
-                    totalActive.setText(totalActiveFetch);
+                            countries.add(country);
 
-                    newCasesFetch = String.valueOf(response.getInt("todayCases"));
-                    newCases.setText(newCasesFetch);
-                    newDeathsFetch = String.valueOf(response.getInt("todayDeaths"));
-                    newDeaths.setText(newDeathsFetch);
-
-                    Log.d("myresponse", "Today Deaths are: " + response.getInt("todayDeaths") + " Today Cases are: " + response.getInt("todayCases"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+//                        JSONObject countryInfo = obj.getJSONObject("countryInfo");
+//                        String CountryNameLink = countryInfo.getString("iso2");
+                            Log.d("myresponse", i + 1 + ". Country: " + obj.getString("country") + ", Array: " + countries);
+                        }
+                    }
+                    catch (JSONException e) { e.printStackTrace(); }
+                recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                adapter = new Adapter(getApplicationContext(), countries);
+                recyclerView.setAdapter(adapter);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -94,7 +84,7 @@ public class CountryList extends AppCompatActivity {
                 Toast.makeText(CountryList.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
             }
         });
-        requestQueue.add(JsonObjectRequest);
+        requestQueue.add(JsonArrayRequest);
         requestQueue.getCache().clear();
     }
 }

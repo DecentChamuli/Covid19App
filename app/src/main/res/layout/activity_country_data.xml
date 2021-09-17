@@ -2,10 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/background"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".CountryData">
 
     <!-- App Heading  -->
     <TextView
@@ -42,19 +41,15 @@
             android:textSize="22sp"
             android:visibility="visible" />
 
-        <ImageView
-            android:id="@+id/worldIcon"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/flagImg"
+            android:layout_width="30dp"
+            android:layout_height="26dp"
             android:layout_marginStart="3dp"
             android:layout_marginLeft="3dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginEnd="2dp"
-            android:layout_marginRight="2dp"
-            android:contentDescription="@string/worldwide"
-            android:visibility="visible"
-            app:srcCompat="@drawable/ic_baseline_language_24"
-            tools:ignore="VectorDrawableCompat" />
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginRight="4dp" />
 
         <TextView
             android:id="@+id/location"
@@ -62,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="0.5dp"
             android:fontFamily="@font/poppins_semibold"
-            android:text="@string/worldwide"
+            android:text="@string/country_name"
             android:textSize="22sp"
             android:visibility="visible" />
 
@@ -136,6 +131,7 @@
         </LinearLayout>
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/totalrecoverySection"
         android:layout_width="match_parent"
@@ -164,6 +160,8 @@
             android:textColor="@color/darkGreen"
             android:textSize="22sp" />
     </LinearLayout>
+
+
 
     <!-- Fetching New Details from API -->
     <LinearLayout
@@ -233,6 +231,8 @@
         </LinearLayout>
 
     </LinearLayout>
+
+
     <LinearLayout
         android:id="@+id/activeSection"
         android:layout_width="match_parent"
@@ -264,7 +264,11 @@
 
 
 
-    <!-- Graph Section -->
+
+
+
+    <!-- Navbar Section -->
+
     <ScrollView
         android:id="@+id/graphs"
         android:layout_width="match_parent"
@@ -276,27 +280,27 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/pieChart"
+            <TextView
+                android:id="@+id/textView"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"/>
-
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Graphs Will show here"
+                android:textSize="34sp" />
         </LinearLayout>
-
     </ScrollView>
 
-
-
     <!-- Navbar Section -->
+
     <LinearLayout
         android:id="@+id/navBar"
         android:layout_width="match_parent"
         android:layout_height="95dp"
+        android:layout_marginTop="200dp"
         android:background="#7e9492"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         android:weightSum="3">
-<!--        android:layout_marginTop="200dp"-->
 
         <TextView
             android:id="@+id/inCountry"
@@ -305,7 +309,7 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:gravity="center"
-            android:onClick="openList"
+            android:onClick="openActivity"
             android:text="@string/cases_in_country"
             android:textSize="20sp" />
 
@@ -317,7 +321,6 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/worldwide"
-            android:onClick="openData"
             android:textSize="20sp" />
 
         <TextView

@@ -4,8 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/llllll/AndroidStudioProjects/CovidTracker/app/src/main/res/font/fonts.xml" value="0.11319444444444444" />
-        <entry key="..\:/Users/llllll/AndroidStudioProjects/CovidTracker/app/src/main/res/layout/activity_country_list.xml" value="0.15" />
+        <entry key="..\:/Users/llllll/AndroidStudioProjects/CovidTracker/app/src/main/res/layout/activity_country_data.xml" value="0.1284722222222222" />
+        <entry key="..\:/Users/llllll/AndroidStudioProjects/CovidTracker/app/src/main/res/layout/activity_country_list.xml" value="0.16" />
         <entry key="..\:/Users/llllll/AndroidStudioProjects/CovidTracker/app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="..\:/Users/llllll/AndroidStudioProjects/CovidTracker/app/src/main/res/layout/custom_list_layout.xml" value="0.18" />
+        <entry key="..\:/Users/llllll/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_list_item_1.xml" value="0.1" />
       </map>
     </option>
   </component>

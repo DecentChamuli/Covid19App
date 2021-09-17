@@ -12,13 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CovidTracker">
         <activity
+            android:name=".CountryData"
+            android:exported="true"
+            android:label="Country Data"
+            android:parentActivityName=".CountryList"/>
+        <activity
             android:name=".CountryList"
             android:exported="true"
-            android:label="Country list"
-            android:parentActivityName=".MainActivity">
-
-        </activity>
-
+            android:label="Country List"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

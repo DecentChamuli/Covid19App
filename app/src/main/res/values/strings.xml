@@ -16,4 +16,8 @@
     <string name="cases_in_country">Cases in Country</string>
     <string name="vaccine">Vaccine</string>
     <string name="country_name">Country Name</string>
+    <string name="title_activity_country_data">CountryData</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>

@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
                     newDeathsFetch = String.valueOf(response.getInt("todayDeaths"));
                     newDeaths.setText(newDeathsFetch);
 
+
                     Log.d("myresponse", "Today Deaths are: " + response.getInt("todayDeaths") + " Today Cases are: " + response.getInt("todayCases"));
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -106,11 +107,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupPieChart(){
-        pieChart.setDrawHoleEnabled(true);
+        pieChart.setDrawHoleEnabled(false);
         pieChart.setUsePercentValues(true);
         pieChart.setEntryLabelColor(Color.BLACK);
         pieChart.setEntryLabelTextSize(12);
-        pieChart.setCenterText("Covid 19 Cases");
+        pieChart.setCenterText("Covid-19 Cases");
         pieChart.setCenterTextSize(24);
         pieChart.getDescription().setEnabled(false);
 
@@ -124,9 +125,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadPieChartData(){
         ArrayList<PieEntry> entries = new ArrayList<>();
-        entries.add(new PieEntry(0.2f, "Travel")); // Green
-        entries.add(new PieEntry(0.15f, "Food")); // Yellow
-        entries.add(new PieEntry(0.10f, "Shopping")); // Red
+        entries.add(new PieEntry(199492744, "Recovered")); // Green
+        entries.add(new PieEntry(18864028, "Active")); // Yellow
+        entries.add(new PieEntry(4603831, "Deaths")); // Red
+
 
         ArrayList<Integer> colors = new ArrayList<>();
         for (int color: ColorTemplate.MATERIAL_COLORS){
@@ -136,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
             colors.add(color);
         }
 
-        PieDataSet dataSet = new PieDataSet(entries, "Expense");
+        PieDataSet dataSet = new PieDataSet(entries, "Coronavirus Cases");
         dataSet.setColors(colors);
 
         PieData data = new PieData(dataSet);
@@ -149,9 +151,14 @@ public class MainActivity extends AppCompatActivity {
         pieChart.invalidate();
     }
 
-    public void openActivity(View view){
-        Toast.makeText(this, "Opening Country Data", Toast.LENGTH_SHORT).show();
+    public void openList(View view){
+        Toast.makeText(this, "Opening Country List", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, CountryList.class);
+        startActivity(intent);
+    }
+    public void openData(View view){
+        Toast.makeText(this, "Opening Country Data", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, CountryData.class);
         startActivity(intent);
     }
 }
