@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="background">#FFcededc</color>
     <color name="heading">#FF004275</color>
+    <color name="sub_heading">#0A6AB5</color>
     <color name="lightBlue">#FF0061b0</color>
     <color name="darkBlue">#FF02457a</color>
     <color name="lightRed">#FFa63a24</color>

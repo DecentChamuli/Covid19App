@@ -1,10 +1,12 @@
 package com.example.covidtracker;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,6 +16,16 @@ import java.util.List;
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     LayoutInflater inflater;
     List<Country> country;
+
+    private OnItemClickListener mListener;
+
+    public interface OnItemClickListener{
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        mListener = listener;
+    }
 
     public Adapter(Context context, List<Country> country){
         this.inflater = LayoutInflater.from(context);
@@ -30,6 +42,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.countryNameFetch.setText(country.get(position).getCountryName());
+
     }
 
     @Override
@@ -42,8 +55,19 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         TextView countryNameFetch;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             countryNameFetch = itemView.findViewById(R.id.countrynameFetch);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(mListener != null){
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION){
+                            mListener.onItemClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
 }

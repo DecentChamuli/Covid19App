@@ -1,6 +1,7 @@
 package com.example.covidtracker;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,7 +32,10 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CountryList extends AppCompatActivity {
+public class CountryList extends AppCompatActivity implements Adapter.OnItemClickListener {
+
+    public static final String EXTRA_COUNTRYNAME = "countryName";
+    public static final String EXTRA_COUNTRYCODE = "countryCode";
 
     RecyclerView recyclerView;
     List<Country> countries;
@@ -56,26 +60,31 @@ public class CountryList extends AppCompatActivity {
             @Override
             public void onResponse(JSONArray response) {
 
-                    try {
-                        for (int i = 0; i < 10; i++) {
-//                        for(int i=0; i<response.length(); i++){
+                try {
+                    for (int i = 0; i < 10; i++) {
+//                    for(int i=0; i<response.length(); i++){
 
-                            JSONObject obj = response.getJSONObject(i);
-                            String countryFetch = obj.getString("country");
-                            Country country = new Country();
-                            country.setCountryName(countryFetch);
+                        JSONObject obj = response.getJSONObject(i);
+                        String countryFetch = obj.getString("country");
+                        Country country = new Country();
+                        country.setCountryName(countryFetch);
 
-                            countries.add(country);
+                        countries.add(country);
 
-//                        JSONObject countryInfo = obj.getJSONObject("countryInfo");
-//                        String CountryNameLink = countryInfo.getString("iso2");
-                            Log.d("myresponse", i + 1 + ". Country: " + obj.getString("country") + ", Array: " + countries);
-                        }
+                        JSONObject countryInfo = obj.getJSONObject("countryInfo");
+                        String CountryCode = countryInfo.getString("iso2");
+
+                        country.setCountryCode(CountryCode);
+
+                        Log.d("myresponse", i + 1 + ". Country: " + obj.getString("country") + ", Array: " + countries);
                     }
-                    catch (JSONException e) { e.printStackTrace(); }
+                }
+                catch (JSONException e) { e.printStackTrace(); }
                 recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                 adapter = new Adapter(getApplicationContext(), countries);
                 recyclerView.setAdapter(adapter);
+                recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL));
+                adapter.setOnItemClickListener(CountryList.this);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -86,5 +95,15 @@ public class CountryList extends AppCompatActivity {
         });
         requestQueue.add(JsonArrayRequest);
         requestQueue.getCache().clear();
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(this, CountryData.class);
+        Country clickedItem = countries.get(position);
+
+        intent.putExtra(EXTRA_COUNTRYNAME, clickedItem.getCountryName());
+        intent.putExtra(EXTRA_COUNTRYCODE, clickedItem.getCountryCode());
+        startActivity(intent);
     }
 }

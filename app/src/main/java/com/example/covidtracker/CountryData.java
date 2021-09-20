@@ -1,7 +1,11 @@
 package com.example.covidtracker;
 
+import static com.example.covidtracker.CountryList.EXTRA_COUNTRYCODE;
+import static com.example.covidtracker.CountryList.EXTRA_COUNTRYNAME;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -45,6 +49,10 @@ public class CountryData extends AppCompatActivity {
         Fresco.initialize(this);
         setContentView(R.layout.activity_country_data);
 
+        Intent intent = getIntent();
+        String countryNameList = intent.getStringExtra(EXTRA_COUNTRYNAME);
+        String countryCodeList = intent.getStringExtra(EXTRA_COUNTRYCODE);
+
         totalCases = findViewById(R.id.totalcasesFetch);
         totalDeaths = findViewById(R.id.totaldeathsFetch);
         totalRecoveries = findViewById(R.id.totalrecoveryFetch);
@@ -58,11 +66,10 @@ public class CountryData extends AppCompatActivity {
         RequestQueue requestQueue;
         requestQueue = Volley.newRequestQueue(this);
 
-        String country = "uk";
-
+//        String country = "uk";
 
         JsonObjectRequest JsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
-                "https://disease.sh/v3/covid-19/countries/"+country,
+                "https://disease.sh/v3/covid-19/countries/"+countryCodeList,
                 null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -92,7 +99,8 @@ public class CountryData extends AppCompatActivity {
                     SimpleDraweeView draweeView = (SimpleDraweeView) findViewById(R.id.flagImg);
                     draweeView.setImageURI(uri);
 
-                    Log.d("myresponse", "Country Info is: " + countryInfo.getString("flag"));
+//                    Log.d("myresponse", "Country Info is: " + countryInfo.getString("flag"));
+                    Log.d("myresponse", "Country Code from Previous Activity is: " + countryCodeList );
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -109,7 +117,4 @@ public class CountryData extends AppCompatActivity {
 
 
     }
-//    public void SetFetch(){
-//
-//    }
 }
