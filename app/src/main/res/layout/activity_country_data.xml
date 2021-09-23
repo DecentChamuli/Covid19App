@@ -11,7 +11,7 @@
         android:id="@+id/mainHeading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="2dp"
         android:contentDescription="@string/desc"
         android:fontFamily="@font/oswald_bold"
         android:gravity="center_horizontal"
@@ -68,7 +68,7 @@
         android:id="@+id/totalDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="5dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
 
@@ -238,7 +238,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="4dp">
+        android:layout_marginTop="3dp">
 
         <TextView
             android:id="@+id/totalActive"
@@ -264,31 +264,28 @@
 
 
 
-
-
-
-    <!-- Navbar Section -->
-
+    <!-- Graph Section -->
     <ScrollView
         android:id="@+id/graphs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp">
+        android:layout_marginTop="7dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/textView"
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/pieChart"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Graphs Will show here"
-                android:textSize="34sp" />
+                android:layout_height="300dp"/>
         </LinearLayout>
+
     </ScrollView>
+
+
+
 
     <!-- Navbar Section -->
 
@@ -296,7 +293,7 @@
         android:id="@+id/navBar"
         android:layout_width="match_parent"
         android:layout_height="95dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="4dp"
         android:background="#7e9492"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
@@ -309,7 +306,6 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:gravity="center"
-            android:onClick="openActivity"
             android:text="@string/cases_in_country"
             android:textSize="20sp" />
 
@@ -331,7 +327,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/vaccine"
-            android:textSize="20sp"/>
+            android:textSize="20sp" />
     </LinearLayout>
 
 </LinearLayout>

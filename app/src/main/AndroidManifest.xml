@@ -12,10 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CovidTracker">
         <activity
+            android:name=".Vaccines"
+            android:exported="true"
+            android:label="Vaccine Detail"
+            android:parentActivityName=".MainActivity"/>
+        <activity
             android:name=".CountryData"
             android:exported="true"
             android:label="Country Data"
-            android:parentActivityName=".CountryList"/>
+            android:parentActivityName=".CountryList" />
         <activity
             android:name=".CountryList"
             android:exported="true"

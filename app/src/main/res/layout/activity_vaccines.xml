@@ -1,12 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
     android:orientation="vertical"
-    tools:context=".CountryList">
+    tools:context=".Vaccines">
 
     <TextView
         android:id="@+id/mainHeading"
@@ -24,23 +24,11 @@
         android:visibility="visible" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="@string/select_country"
-        android:textColor="@color/sub_heading"
-        android:textSize="28sp"
-        android:textAlignment="center"
-        android:gravity="center_horizontal" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/countryList"
+        android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
-        app:fastScrollEnabled="false"
-        />
-
+        android:fontFamily="@font/oswald_regular"
+        android:gravity="center"
+        android:text="This is Vaccine Page"
+        android:textSize="24sp" />
 </LinearLayout>
-

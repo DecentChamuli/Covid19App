@@ -1,5 +1,7 @@
 package com.example.covidtracker;
 
+import static java.lang.Integer.parseInt;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -16,12 +18,16 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import org.json.JSONObject;
@@ -85,6 +91,9 @@ public class MainActivity extends AppCompatActivity {
                     newDeaths.setText(newDeathsFetch);
 
 
+                    loadPieChartData(response.getInt("recovered"), response.getInt("active"), response.getInt("deaths"));
+
+
                     Log.d("myresponse", "Today Deaths are: " + response.getInt("todayDeaths") + " Today Cases are: " + response.getInt("todayCases"));
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -100,9 +109,32 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(JsonObjectRequest);
         requestQueue.getCache().clear();
 
+
         pieChart = findViewById(R.id.pieChart);
         setupPieChart();
-        loadPieChartData();
+//        loadPieChartData();
+
+        pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+            String GraphData[] = {"Recovered", "Active", "Deaths"};
+
+            @Override
+            public void onValueSelected(Entry e, Highlight h) {
+
+//                Log.d("myresponse", "onValueSelected: " + h.toString());
+                int ValueSelect = e.toString().indexOf("y: ");
+                int ValueSelect1 = e.toString().indexOf("x: ");
+                String Shrinked = e.toString().substring(ValueSelect + 3);
+                String Shrinked1 = h.toString().substring(ValueSelect1 + 7,ValueSelect1 + 8);
+//                Log.d("myresponse", "onValueSelected:" + Shrinked1);
+
+                int DataNumber = Integer.parseInt(Shrinked1);
+
+                Toast.makeText(MainActivity.this, GraphData[DataNumber] +":\n" + Shrinked, Toast.LENGTH_SHORT).show();
+
+            }
+            @Override
+            public void onNothingSelected() { }
+        });
 
     }
 
@@ -123,11 +155,12 @@ public class MainActivity extends AppCompatActivity {
         l.setEnabled(true);
     }
 
-    private void loadPieChartData(){
+    private void loadPieChartData(int RecoveryNumber, int ActiveNumber, int DeathsNumber){
+//    private void loadPieChartData(){
         ArrayList<PieEntry> entries = new ArrayList<>();
-        entries.add(new PieEntry(199492744, "Recovered")); // Green
-        entries.add(new PieEntry(18864028, "Active")); // Yellow
-        entries.add(new PieEntry(4603831, "Deaths")); // Red
+        entries.add(new PieEntry(RecoveryNumber, "Recovered")); // Green
+        entries.add(new PieEntry(ActiveNumber, "Active")); // Yellow
+        entries.add(new PieEntry(DeathsNumber, "Deaths")); // Red
 
 
         ArrayList<Integer> colors = new ArrayList<>();
@@ -149,6 +182,7 @@ public class MainActivity extends AppCompatActivity {
 
         pieChart.setData(data);
         pieChart.invalidate();
+        pieChart.animateY(1400, Easing.EaseInOutQuad);
     }
 
     public void openList(View view){
@@ -159,6 +193,11 @@ public class MainActivity extends AppCompatActivity {
     public void openData(View view){
         Toast.makeText(this, "Opening Country Data", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, CountryData.class);
+        startActivity(intent);
+    }
+    public void openVaccine(View view){
+        Toast.makeText(this, "Opening Vaccines Information", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, Vaccines.class);
         startActivity(intent);
     }
 }

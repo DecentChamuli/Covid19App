@@ -14,7 +14,6 @@ class Country {
     public String getCountryName() {
         return CountryName;
     }
-
     public String getCountryCode() {
         return CountryCode;
     }
@@ -22,7 +21,6 @@ class Country {
     public void setCountryName(String countryName) {
         CountryName = countryName;
     }
-
     public void setCountryCode(String countryCode) {
         CountryCode = countryCode;
     }

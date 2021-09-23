@@ -34,7 +34,6 @@ import java.util.List;
 
 public class CountryList extends AppCompatActivity implements Adapter.OnItemClickListener {
 
-    public static final String EXTRA_COUNTRYNAME = "countryName";
     public static final String EXTRA_COUNTRYCODE = "countryCode";
 
     RecyclerView recyclerView;
@@ -61,8 +60,8 @@ public class CountryList extends AppCompatActivity implements Adapter.OnItemClic
             public void onResponse(JSONArray response) {
 
                 try {
-                    for (int i = 0; i < 10; i++) {
-//                    for(int i=0; i<response.length(); i++){
+//                    for (int i = 0; i < 50; i++) {
+                    for(int i=0; i<response.length(); i++){
 
                         JSONObject obj = response.getJSONObject(i);
                         String countryFetch = obj.getString("country");
@@ -76,7 +75,7 @@ public class CountryList extends AppCompatActivity implements Adapter.OnItemClic
 
                         country.setCountryCode(CountryCode);
 
-                        Log.d("myresponse", i + 1 + ". Country: " + obj.getString("country") + ", Array: " + countries);
+//                        Log.d("myresponse", i + 1 + ". Country: " + obj.getString("country") + ", Array: " + countries);
                     }
                 }
                 catch (JSONException e) { e.printStackTrace(); }
@@ -102,7 +101,6 @@ public class CountryList extends AppCompatActivity implements Adapter.OnItemClic
         Intent intent = new Intent(this, CountryData.class);
         Country clickedItem = countries.get(position);
 
-        intent.putExtra(EXTRA_COUNTRYNAME, clickedItem.getCountryName());
         intent.putExtra(EXTRA_COUNTRYCODE, clickedItem.getCountryCode());
         startActivity(intent);
     }

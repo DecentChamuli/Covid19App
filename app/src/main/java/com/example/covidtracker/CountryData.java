@@ -1,11 +1,11 @@
 package com.example.covidtracker;
 
 import static com.example.covidtracker.CountryList.EXTRA_COUNTRYCODE;
-import static com.example.covidtracker.CountryList.EXTRA_COUNTRYNAME;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,9 +20,22 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.github.mikephil.charting.animation.Easing;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class CountryData extends AppCompatActivity {
 
@@ -43,6 +56,8 @@ public class CountryData extends AppCompatActivity {
     TextView newDeaths;
     String newDeathsFetch;
 
+    private PieChart pieChart;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +65,6 @@ public class CountryData extends AppCompatActivity {
         setContentView(R.layout.activity_country_data);
 
         Intent intent = getIntent();
-        String countryNameList = intent.getStringExtra(EXTRA_COUNTRYNAME);
         String countryCodeList = intent.getStringExtra(EXTRA_COUNTRYCODE);
 
         totalCases = findViewById(R.id.totalcasesFetch);
@@ -65,8 +79,6 @@ public class CountryData extends AppCompatActivity {
 
         RequestQueue requestQueue;
         requestQueue = Volley.newRequestQueue(this);
-
-//        String country = "uk";
 
         JsonObjectRequest JsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
                 "https://disease.sh/v3/covid-19/countries/"+countryCodeList,
@@ -99,8 +111,10 @@ public class CountryData extends AppCompatActivity {
                     SimpleDraweeView draweeView = (SimpleDraweeView) findViewById(R.id.flagImg);
                     draweeView.setImageURI(uri);
 
+                    loadPieChartData(response.getInt("recovered"), response.getInt("active"), response.getInt("deaths"));
+
 //                    Log.d("myresponse", "Country Info is: " + countryInfo.getString("flag"));
-                    Log.d("myresponse", "Country Code from Previous Activity is: " + countryCodeList );
+//                    Log.d("myresponse", "Country Code from Previous Activity is: " + countryCodeList );
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -116,5 +130,79 @@ public class CountryData extends AppCompatActivity {
         requestQueue.getCache().clear();
 
 
+
+        pieChart = findViewById(R.id.pieChart);
+        setupPieChart();
+//        loadPieChartData();
+
+        pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+            String GraphData[] = {"Recovered", "Active", "Deaths"};
+
+            @Override
+            public void onValueSelected(Entry e, Highlight h) {
+
+//                Log.d("myresponse", "onValueSelected: " + h.toString());
+                int ValueSelect = e.toString().indexOf("y: ");
+                int ValueSelect1 = e.toString().indexOf("x: ");
+                String Shrinked = e.toString().substring(ValueSelect + 3);
+                String Shrinked1 = h.toString().substring(ValueSelect1 + 7,ValueSelect1 + 8);
+//                Log.d("myresponse", "onValueSelected:" + Shrinked1);
+
+                int DataNumber = Integer.parseInt(Shrinked1);
+
+                Toast.makeText(CountryData.this, GraphData[DataNumber] +":\n" + Shrinked, Toast.LENGTH_SHORT).show();
+
+            }
+            @Override
+            public void onNothingSelected() { }
+        });
+
+    }
+
+    private void setupPieChart(){
+        pieChart.setDrawHoleEnabled(false);
+        pieChart.setUsePercentValues(true);
+        pieChart.setEntryLabelColor(Color.BLACK);
+        pieChart.setEntryLabelTextSize(12);
+        pieChart.setCenterText("Covid-19 Cases");
+        pieChart.setCenterTextSize(24);
+        pieChart.getDescription().setEnabled(false);
+
+        Legend l = pieChart.getLegend();
+        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
+        l.setOrientation((Legend.LegendOrientation.VERTICAL));
+        l.setDrawInside(false);
+        l.setEnabled(true);
+    }
+
+    private void loadPieChartData(int RecoveryNumber, int ActiveNumber, int DeathsNumber){
+//    private void loadPieChartData(){
+        ArrayList<PieEntry> entries = new ArrayList<>();
+        entries.add(new PieEntry(RecoveryNumber, "Recovered")); // Green
+        entries.add(new PieEntry(ActiveNumber, "Active")); // Yellow
+        entries.add(new PieEntry(DeathsNumber, "Deaths")); // Red
+
+
+        ArrayList<Integer> colors = new ArrayList<>();
+        for (int color: ColorTemplate.MATERIAL_COLORS){
+            colors.add(color);
+        }
+        for (int color: ColorTemplate.VORDIPLOM_COLORS){
+            colors.add(color);
+        }
+
+        PieDataSet dataSet = new PieDataSet(entries, "Coronavirus Cases");
+        dataSet.setColors(colors);
+
+        PieData data = new PieData(dataSet);
+        data.setDrawValues(true);
+        data.setValueFormatter(new PercentFormatter(pieChart));
+        data.setValueTextSize(12f);
+        data.setValueTextColor(Color.BLACK);
+
+        pieChart.setData(data);
+        pieChart.invalidate();
+        pieChart.animateY(1400, Easing.EaseInOutQuad);
     }
 }
