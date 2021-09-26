@@ -3,6 +3,7 @@ package com.example.covidtracker;
 class Country {
     private String CountryName;
     private String CountryCode;
+    private int Vaccine;
 
     public Country(){}
 
@@ -11,17 +12,29 @@ class Country {
         this.CountryCode = CountryCode;
     }
 
-    public String getCountryName() {
-        return CountryName;
+    public Country(String CountryName, int Vaccine){
+        this.CountryName = CountryName;
+        this.Vaccine = Vaccine;
     }
-    public String getCountryCode() {
-        return CountryCode;
+
+    public void setVaccine(int vaccine) {
+        Vaccine = vaccine;
+    }
+    public int getVaccine() {
+        return Vaccine;
     }
 
     public void setCountryName(String countryName) {
         CountryName = countryName;
     }
+    public String getCountryName() {
+        return CountryName;
+    }
+
     public void setCountryCode(String countryCode) {
         CountryCode = countryCode;
+    }
+    public String getCountryCode() {
+        return CountryCode;
     }
 }

@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                     loadPieChartData(response.getInt("recovered"), response.getInt("active"), response.getInt("deaths"));
 
 
-                    Log.d("myresponse", "Today Deaths are: " + response.getInt("todayDeaths") + " Today Cases are: " + response.getInt("todayCases"));
+//                    Log.d("myresponse", "Today Deaths are: " + response.getInt("todayDeaths") + " Today Cases are: " + response.getInt("todayCases"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -186,18 +186,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openList(View view){
-        Toast.makeText(this, "Opening Country List", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Opening Countries List", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, CountryList.class);
-        startActivity(intent);
-    }
-    public void openData(View view){
-        Toast.makeText(this, "Opening Country Data", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, CountryData.class);
         startActivity(intent);
     }
     public void openVaccine(View view){
         Toast.makeText(this, "Opening Vaccines Information", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, Vaccines.class);
         startActivity(intent);
+    }
+    public void samePage(View view){
+        Toast.makeText(this, "You're on the same Page", Toast.LENGTH_SHORT).show();
     }
 }

@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -204,5 +205,21 @@ public class CountryData extends AppCompatActivity {
         pieChart.setData(data);
         pieChart.invalidate();
         pieChart.animateY(1400, Easing.EaseInOutQuad);
+    }
+
+    public void openList(View view){
+        Toast.makeText(this, "Opening Countries List", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, CountryList.class);
+        startActivity(intent);
+    }
+    public void openHome(View view){
+        Toast.makeText(this, "Opening Home Page", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+    public void openVaccine(View view){
+        Toast.makeText(this, "Opening Vaccines Information", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, Vaccines.class);
+        startActivity(intent);
     }
 }

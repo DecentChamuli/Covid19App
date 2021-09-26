@@ -4,12 +4,25 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/llllll/AndroidStudioProjects/CovidTracker/app/src/main/res/font/fonts.xml" value="0.11319444444444444" />
-        <entry key="..\:/Users/llllll/AndroidStudioProjects/CovidTracker/app/src/main/res/layout/activity_country_data.xml" value="0.2" />
+        <entry key="..\:/Users/llllll/AndroidStudioProjects/CovidTracker/app/src/main/res/layout-large/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/llllll/AndroidStudioProjects/CovidTracker/app/src/main/res/layout-normal/activity_main.xml" value="0.16" />
+        <entry key="..\:/Users/llllll/AndroidStudioProjects/CovidTracker/app/src/main/res/layout-small/activity_main.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/llllll/AndroidStudioProjects/CovidTracker/app/src/main/res/layout-xlarge/activity_main.xml" value="0.2046875" />
+        <entry key="..\:/Users/llllll/AndroidStudioProjects/CovidTracker/app/src/main/res/layout/activity_country_data.xml" value="0.16" />
         <entry key="..\:/Users/llllll/AndroidStudioProjects/CovidTracker/app/src/main/res/layout/activity_country_list.xml" value="0.12" />
-        <entry key="..\:/Users/llllll/AndroidStudioProjects/CovidTracker/app/src/main/res/layout/activity_main.xml" value="0.18" />
-        <entry key="..\:/Users/llllll/AndroidStudioProjects/CovidTracker/app/src/main/res/layout/activity_vaccines.xml" value="0.11180555555555556" />
+        <entry key="..\:/Users/llllll/AndroidStudioProjects/CovidTracker/app/src/main/res/layout/activity_main.xml" value="0.16" />
+        <entry key="..\:/Users/llllll/AndroidStudioProjects/CovidTracker/app/src/main/res/layout/activity_vaccines.xml" value="0.17" />
+        <entry key="..\:/Users/llllll/AndroidStudioProjects/CovidTracker/app/src/main/res/layout/bottom_navigation_menu.xml" value="0.18194444444444444" />
         <entry key="..\:/Users/llllll/AndroidStudioProjects/CovidTracker/app/src/main/res/layout/custom_list_layout.xml" value="0.18" />
+        <entry key="..\:/Users/llllll/AndroidStudioProjects/CovidTracker/app/src/main/res/layout/custom_vaccines_layout.xml" value="0.1" />
+        <entry key="..\:/Users/llllll/AndroidStudioProjects/CovidTracker/app/src/main/res/layout/navbar.xml" value="0.1723684210526316" />
+        <entry key="..\:/Users/llllll/AndroidStudioProjects/CovidTracker/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1375" />
+        <entry key="..\:/Users/llllll/AndroidStudioProjects/CovidTracker/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1375" />
+        <entry key="..\:/Users/llllll/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_expandable_list_item_2.xml" value="0.1723684210526316" />
+        <entry key="..\:/Users/llllll/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_gallery_item.xml" value="0.1723684210526316" />
         <entry key="..\:/Users/llllll/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_list_item_1.xml" value="0.1" />
+        <entry key="..\:/Users/llllll/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_list_item_2.xml" value="0.1" />
+        <entry key="..\:/Users/llllll/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_list_item_multiple_choice.xml" value="0.1" />
       </map>
     </option>
   </component>

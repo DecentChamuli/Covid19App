@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Covid Tracker</string>
+    <string name="app_name">Covid-19 Tracker</string>
     <string name="heading">Covid 19 Tracker</string>
     <string name="desc">Real Time Covid-19 Tracker</string>
     <string name="worldwide">WorldWide</string>
@@ -21,4 +21,7 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="select_country">Select Country:</string>
+    <string name="vaccines_here">Vaccines Here</string>
+    <string name="date_here">Date Here</string>
+    <string name="last_updated">Last Updated:</string>
 </resources>

@@ -1,4 +1,5 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,7 +11,8 @@
     <TextView
         android:id="@+id/mainHeading"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.9"
         android:layout_marginTop="2dp"
         android:contentDescription="@string/desc"
         android:fontFamily="@font/oswald_bold"
@@ -26,7 +28,8 @@
     <LinearLayout
         android:id="@+id/mainContent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight=".5"
         android:layout_marginTop="5dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
@@ -67,7 +70,8 @@
     <LinearLayout
         android:id="@+id/totalDetail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_marginTop="5dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
@@ -135,14 +139,16 @@
     <LinearLayout
         android:id="@+id/totalrecoverySection"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="vertical"
         android:layout_marginTop="4dp">
 
         <TextView
             android:id="@+id/totalRecovery"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:layout_gravity="center"
             android:layout_marginBottom="2dp"
             android:fontFamily="@font/roboto_regular"
@@ -153,7 +159,8 @@
         <TextView
             android:id="@+id/totalrecoveryFetch"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:layout_gravity="center"
             android:fontFamily="@font/roboto_bold"
             android:text="@string/cases_here"
@@ -161,13 +168,12 @@
             android:textSize="22sp" />
     </LinearLayout>
 
-
-
     <!-- Fetching New Details from API -->
     <LinearLayout
         android:id="@+id/todayDetail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_marginTop="2dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
@@ -232,18 +238,19 @@
 
     </LinearLayout>
 
-
     <LinearLayout
         android:id="@+id/activeSection"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="vertical"
         android:layout_marginTop="3dp">
 
         <TextView
             android:id="@+id/totalActive"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:layout_gravity="center"
             android:layout_marginBottom="2dp"
             android:fontFamily="@font/roboto_regular"
@@ -254,7 +261,8 @@
         <TextView
             android:id="@+id/totalactiveFetch"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:layout_gravity="center"
             android:fontFamily="@font/roboto_bold"
             android:text="@string/cases_here"
@@ -262,37 +270,20 @@
             android:textSize="22sp" />
     </LinearLayout>
 
-
-
     <!-- Graph Section -->
-    <ScrollView
-        android:id="@+id/graphs"
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/pieChart"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/pieChart"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"/>
-        </LinearLayout>
-
-    </ScrollView>
-
-
-
+        android:layout_height="0dp"
+        android:layout_weight="4.9"
+        android:layout_marginTop="7dp"/>
 
     <!-- Navbar Section -->
-
     <LinearLayout
         android:id="@+id/navBar"
         android:layout_width="match_parent"
-        android:layout_height="95dp"
+        android:layout_height="0dp"
+        android:layout_weight="1.2"
         android:layout_marginTop="4dp"
         android:background="#7e9492"
         android:gravity="center_horizontal"
@@ -306,6 +297,7 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:gravity="center"
+            android:onClick="openList"
             android:text="@string/cases_in_country"
             android:textSize="20sp" />
 
@@ -316,6 +308,7 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:gravity="center"
+            android:onClick="openHome"
             android:text="@string/worldwide"
             android:textSize="20sp" />
 
@@ -326,6 +319,7 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:gravity="center"
+            android:onClick="openVaccine"
             android:text="@string/vaccine"
             android:textSize="20sp" />
     </LinearLayout>
